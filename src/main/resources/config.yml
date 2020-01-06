@@ -1,0 +1,31 @@
+#     _   _                 _
+#    | \ | | ___  ___ _ __ | |__   ___ _ __
+#    |  \| |/ _ \/ __| '_ \| '_ \ / _ \ '__|
+#    | |\  | (_) \__ \ |_) | | | |  __/ |
+#    |_| \_|\___/|___/ .__/|_| |_|\___|_|
+#
+#     ____             _                     _
+#    | __ )  __ _  ___| | ___ __   __ _  ___| | __
+#    |  _ \ / _` |/ __| |/ / '_ \ / _` |/ __| |/ /
+#    | |_) | (_| | (__|   <| |_) | (_| | (__|   <
+#    |____/ \__,_|\___|_|\_\ .__/ \__,_|\___|_|\_\
+#
+#
+# nsp.backpack.commands.give - Enviar uma mochila a um jogador.
+#
+
+settings:
+  backpack:
+    name: '&eMochila pica das galaxias'
+    lore:
+      - '&fPense que aqui'
+      - '&7tem uma lore pica.'
+      - '&aPensou? então blz'
+  messages:
+    insufficient_permissions: '&cVocê não tem permissão para executar este comando.'
+    insufficient_arguments: '&cUtilize /backpack give <material> <usuário> <linhas>.'
+    unknown_action: '&cUtilize /backpack give <material> <usuário> <linhas>.'
+    invalid_material: '&cEste material não existe.'
+    invalid_player: '&cEste usuário não está online.'
+    invalid_rows: '&cA quantia de linhas inserida está inválida.'
+    gived_backpack: '&eYeah, você enviou uma mochila para {player} com {rows} linhas.'
