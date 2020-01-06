@@ -25,7 +25,7 @@ public class BackpackManager {
         } else {
             int rows = compound.getInt("rows");
             String stacked = compound.getString("stacked");
-            Inventory inventory = Bukkit.createInventory(null, rows*9, "Mochila " + stacked);
+            Inventory inventory = Bukkit.createInventory(player, rows*9, "Mochila");
             Backpack backpack = new Backpack(item.getType());
             backpack.setRows(rows);
             backpack.setInventory(inventory);
@@ -39,7 +39,7 @@ public class BackpackManager {
     }
 
     public static Boolean isBackpackOpen(Player player) {
-        return backpack_open.get(player);
+        return backpack_open.getOrDefault(player, false);
     }
 
     public static void setBackpackOpen(Player player, Boolean value) {
