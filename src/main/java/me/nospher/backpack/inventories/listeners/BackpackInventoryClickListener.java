@@ -1,6 +1,8 @@
 package me.nospher.backpack.inventories.listeners;
 
+import me.nospher.backpack.NospherBackpack;
 import me.nospher.backpack.manager.BackpackManager;
+import me.nospher.backpack.utils.Helper;
 import me.nospher.backpack.utils.NBTTag;
 import net.md_5.bungee.api.chat.ClickEvent;
 import org.bukkit.Material;
@@ -23,7 +25,11 @@ public class BackpackInventoryClickListener implements Listener {
         Inventory inventory = event.getClickedInventory();
         Player player = (Player) event.getWhoClicked();
         ItemStack item = player.getItemInHand();
-        if(inventory != null && inventory.getName().startsWith("Mochila ")) {
+        String inventory_name = NospherBackpack.getInstance().getConfig().getString(
+                "settings." +
+                        "backpack." +
+                        "inventory_name");
+        if(inventory != null && inventory.getName().equalsIgnoreCase(Helper.colorize(inventory_name))) {
 
             if (event.getClick() == ClickType.NUMBER_KEY || event.isShiftClick()) {
                 event.setCancelled(true);

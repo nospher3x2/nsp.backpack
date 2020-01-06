@@ -1,6 +1,8 @@
 package me.nospher.backpack.manager;
 
+import me.nospher.backpack.NospherBackpack;
 import me.nospher.backpack.item.Backpack;
+import me.nospher.backpack.utils.Helper;
 import me.nospher.backpack.utils.NBTTag;
 import me.nospher.backpack.utils.serializer.InventorySerialize;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -24,8 +26,11 @@ public class BackpackManager {
             return InventorySerialize.toInventory(object1);
         } else {
             int rows = compound.getInt("rows");
-            String stacked = compound.getString("stacked");
-            Inventory inventory = Bukkit.createInventory(player, rows*9, "Mochila");
+            String inventory_name = NospherBackpack.getInstance().getConfig().getString(
+                    "settings." +
+                            "backpack." +
+                            "inventory_name");
+            Inventory inventory = Bukkit.createInventory(player, rows*9, Helper.colorize(inventory_name));
             Backpack backpack = new Backpack(item.getType());
             backpack.setRows(rows);
             backpack.setInventory(inventory);

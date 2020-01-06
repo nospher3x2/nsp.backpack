@@ -16,11 +16,13 @@
 
 settings:
   backpack:
+    inventory_name: 'Mochila'
     name: '&eMochila pica das galaxias'
     lore:
       - '&fPense que aqui'
       - '&7tem uma lore pica.'
       - '&aPensou? então blz'
+
   messages:
     insufficient_permissions: '&cVocê não tem permissão para executar este comando.'
     insufficient_arguments: '&cUtilize /backpack give <material> <usuário> <linhas>.'
@@ -29,3 +31,5 @@ settings:
     invalid_player: '&cEste usuário não está online.'
     invalid_rows: '&cA quantia de linhas inserida está inválida.'
     gived_backpack: '&eYeah, você enviou uma mochila para {player} com {rows} linhas.'
+    player_damaged: '&cA sua mochila foi fechada poís você tomou dano.'
+

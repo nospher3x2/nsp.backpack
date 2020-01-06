@@ -1,6 +1,8 @@
 package me.nospher.backpack.inventories.listeners;
 
+import me.nospher.backpack.NospherBackpack;
 import me.nospher.backpack.manager.BackpackManager;
+import me.nospher.backpack.utils.Helper;
 import me.nospher.backpack.utils.NBTTag;
 import me.nospher.backpack.utils.serializer.InventorySerialize;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -22,7 +24,11 @@ public class BackpackInventoryCloseListener implements Listener {
         Player player = (Player) event.getPlayer();
         Inventory closedInventory = event.getInventory();
         ItemStack item = player.getItemInHand();
-        if(closedInventory.getName().startsWith("Mochila ")) {
+        String inventory_name = NospherBackpack.getInstance().getConfig().getString(
+                "settings." +
+                        "backpack." +
+                        "inventory_name");
+        if(closedInventory.getName().equalsIgnoreCase(Helper.colorize(inventory_name))) {
 
             if (item == null || item.getType() == Material.AIR) return;
 
