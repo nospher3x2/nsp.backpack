@@ -20,7 +20,6 @@ public class Backpack {
 
     private ItemStack item;
 
-
     public Backpack(Material material) {
         ItemStack item1 = new ItemStack(material);
         ItemMeta itemMeta = item1.getItemMeta();

@@ -11,10 +11,20 @@
 #    |____/ \__,_|\___|_|\_\ .__/ \__,_|\___|_|\_\
 #
 #
-# nsp.backpack.commands.give - Enviar uma mochila a um jogador.
+# nsp.backpack.commands.give - Permissão para usar o /backpack give
+# world_blacklist - Mundos em que você não pode abrir a mochila.
+# items_blacklist - Items que você não pode colocar dentro da mochila.
 #
 
 settings:
+  general:
+    autoupdate: true
+    inventory_name: 'Mochila'
+    worlds_blacklist:
+      - 'guerra'
+      - 'mina'
+    items_blacklist:
+      - 'MOB_SPAWNER'
   backpack:
     inventory_name: 'Mochila'
     name: '&eMochila pica das galaxias'
@@ -22,7 +32,6 @@ settings:
       - '&fPense que aqui'
       - '&7tem uma lore pica.'
       - '&aPensou? então blz'
-
   messages:
     insufficient_permissions: '&cVocê não tem permissão para executar este comando.'
     insufficient_arguments: '&cUtilize /backpack give <material> <usuário> <linhas>.'
@@ -30,6 +39,8 @@ settings:
     invalid_material: '&cEste material não existe.'
     invalid_player: '&cEste usuário não está online.'
     invalid_rows: '&cA quantia de linhas inserida está inválida.'
+    invalid_world: '&cVocê não pode abrir a mochila nesse mundo.'
+    invalid_item: '&cVocê não pode colocar este item na mochila'
     gived_backpack: '&eYeah, você enviou uma mochila para {player} com {rows} linhas.'
     player_damaged: '&cA sua mochila foi fechada poís você tomou dano.'
 

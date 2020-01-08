@@ -26,7 +26,7 @@ public class BackpackInventoryCloseListener implements Listener {
         ItemStack item = player.getItemInHand();
         String inventory_name = NospherBackpack.getInstance().getConfig().getString(
                 "settings." +
-                        "backpack." +
+                        "general." +
                         "inventory_name");
         if(closedInventory.getName().equalsIgnoreCase(Helper.colorize(inventory_name))) {
 

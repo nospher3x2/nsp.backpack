@@ -14,10 +14,19 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
+
 /**
  * @author oNospher
  */
 public class BackpackInventoryClickListener implements Listener {
+
+    List<String> items_blacklist = NospherBackpack.getInstance().getConfig().getStringList(
+            "settings." +
+                    "general." +
+                    "items_blacklist"
+    );
+
 
 
     @EventHandler
@@ -25,9 +34,10 @@ public class BackpackInventoryClickListener implements Listener {
         Inventory inventory = event.getClickedInventory();
         Player player = (Player) event.getWhoClicked();
         ItemStack item = player.getItemInHand();
+        ItemStack item_clicked = event.getCurrentItem();
         String inventory_name = NospherBackpack.getInstance().getConfig().getString(
                 "settings." +
-                        "backpack." +
+                        "general." +
                         "inventory_name");
         if(inventory != null && inventory.getName().equalsIgnoreCase(Helper.colorize(inventory_name))) {
 
@@ -42,6 +52,16 @@ public class BackpackInventoryClickListener implements Listener {
                     || !NBTTag.getNBTTag(item).getString("stacked").equals(BackpackManager.getPrevention().get(player))) {
                 event.setCancelled(true);
                 player.setItemInHand(null);
+                player.closeInventory();
+                return;
+            }
+            if(items_blacklist.contains(item_clicked.getType().name())) {
+                event.setCancelled(true);
+                String invalid_item = NospherBackpack.getInstance().getConfig().getString(
+                        "settings." +
+                                "messages." +
+                                "invalid_item");
+                player.sendMessage(Helper.colorize(invalid_item));
                 player.closeInventory();
             }
         }

@@ -28,7 +28,7 @@ public class BackpackManager {
             int rows = compound.getInt("rows");
             String inventory_name = NospherBackpack.getInstance().getConfig().getString(
                     "settings." +
-                            "backpack." +
+                            "general." +
                             "inventory_name");
             Inventory inventory = Bukkit.createInventory(player, rows*9, Helper.colorize(inventory_name));
             Backpack backpack = new Backpack(item.getType());
