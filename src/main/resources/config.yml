@@ -26,7 +26,6 @@ settings:
     items_blacklist:
       - 'MOB_SPAWNER'
   backpack:
-    inventory_name: 'Mochila'
     name: '&eMochila pica das galaxias'
     lore:
       - '&fPense que aqui'

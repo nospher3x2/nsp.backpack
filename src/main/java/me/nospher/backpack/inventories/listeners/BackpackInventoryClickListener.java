@@ -27,14 +27,27 @@ public class BackpackInventoryClickListener implements Listener {
                     "items_blacklist"
     );
 
-
+    @EventHandler
+    public void onClickInBlacklistedItem(InventoryClickEvent event) {
+        Player player = (Player) event.getWhoClicked();
+        ItemStack item_clicked = event.getCurrentItem();
+        if(BackpackManager.isBackpackOpen(player)) {
+            if (items_blacklist.contains(item_clicked.getType().name())) {
+                event.setCancelled(true);
+                String invalid_item = NospherBackpack.getInstance().getConfig().getString(
+                        "settings." +
+                                "messages." +
+                                "invalid_item");
+                player.sendMessage(Helper.colorize(invalid_item));
+            }
+        }
+    }
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         Inventory inventory = event.getClickedInventory();
         Player player = (Player) event.getWhoClicked();
         ItemStack item = player.getItemInHand();
-        ItemStack item_clicked = event.getCurrentItem();
         String inventory_name = NospherBackpack.getInstance().getConfig().getString(
                 "settings." +
                         "general." +
@@ -52,16 +65,6 @@ public class BackpackInventoryClickListener implements Listener {
                     || !NBTTag.getNBTTag(item).getString("stacked").equals(BackpackManager.getPrevention().get(player))) {
                 event.setCancelled(true);
                 player.setItemInHand(null);
-                player.closeInventory();
-                return;
-            }
-            if(items_blacklist.contains(item_clicked.getType().name())) {
-                event.setCancelled(true);
-                String invalid_item = NospherBackpack.getInstance().getConfig().getString(
-                        "settings." +
-                                "messages." +
-                                "invalid_item");
-                player.sendMessage(Helper.colorize(invalid_item));
                 player.closeInventory();
             }
         }
