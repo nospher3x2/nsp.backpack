@@ -30,9 +30,10 @@ public class BackpackInventoryClickListener implements Listener {
     @EventHandler
     public void onClickInBlacklistedItem(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
-        ItemStack item_clicked = event.getCurrentItem();
+        Material item = event.getCurrentItem().getType();
         if(BackpackManager.isBackpackOpen(player)) {
-            if (items_blacklist.contains(item_clicked.getType().name())) {
+            if(item == null || item == Material.AIR) return;
+            if (items_blacklist.contains(item.name())) {
                 event.setCancelled(true);
                 String invalid_item = NospherBackpack.getInstance().getConfig().getString(
                         "settings." +

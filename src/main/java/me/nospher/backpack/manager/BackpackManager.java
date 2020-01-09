@@ -13,6 +13,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
+/**
+ * @author oNospher
+ */
 public class BackpackManager {
 
     private static HashMap<Player, Boolean> backpack_open = new HashMap<>();
