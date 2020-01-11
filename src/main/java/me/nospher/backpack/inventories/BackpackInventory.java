@@ -1,6 +1,6 @@
 package me.nospher.backpack.inventories;
 
-import me.nospher.backpack.events.PlayerOpenBackpackEvent;
+import me.nospher.backpack.events.BackpackOpenEvent;
 import me.nospher.backpack.manager.BackpackManager;
 import me.nospher.backpack.utils.NBTTag;
 import org.bukkit.entity.Player;
@@ -15,7 +15,7 @@ public class BackpackInventory {
     public static void open(Player player) {
         ItemStack item = player.getItemInHand();
         Inventory inventory = BackpackManager.getInventory(player);
-        PlayerOpenBackpackEvent customEvent = new PlayerOpenBackpackEvent(player, inventory, player.getLocation());
+        BackpackOpenEvent customEvent = new BackpackOpenEvent(player, inventory, player.getLocation());
         customEvent.run();
         if(customEvent.isCancelled()) return;
         player.openInventory(inventory);

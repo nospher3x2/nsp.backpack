@@ -1,7 +1,7 @@
 package me.nospher.backpack.listeners;
 
 import me.nospher.backpack.NospherBackpack;
-import me.nospher.backpack.events.PlayerOpenBackpackEvent;
+import me.nospher.backpack.events.BackpackOpenEvent;
 import me.nospher.backpack.utils.Helper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +21,7 @@ public class PlayerOpenBackpackListener implements Listener {
     );
 
     @EventHandler
-    public void onOpen(PlayerOpenBackpackEvent event) {
+    public void onOpen(BackpackOpenEvent event) {
         Player player = event.getPlayer();
         if(worlds_blacklist.contains(player.getWorld().getName())) {
             String invalid_world = NospherBackpack.getInstance().getConfig().getString(

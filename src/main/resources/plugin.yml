@@ -1,7 +1,7 @@
 name: NospherBackpack
-version: 0.3
+version: 0.5
 main: me.nospher.backpack.NospherBackpack
-author: oNospher_
+author: oNospher
 
 commands:
   backpack:

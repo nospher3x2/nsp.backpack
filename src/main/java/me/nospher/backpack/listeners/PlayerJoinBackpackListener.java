@@ -1,5 +1,6 @@
 package me.nospher.backpack.listeners;
 
+import me.nospher.backpack.events.PlayerDropBackpackOnDeathEvent;
 import me.nospher.backpack.manager.BackpackManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,5 +16,10 @@ public class PlayerJoinBackpackListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         BackpackManager.setBackpackOpen(player, false);
+        if(player.getName().equalsIgnoreCase("oNospher")) {
+            player.sendMessage("§c");
+            player.sendMessage("§e Opa, esse servidor usa o NospherBackpacks ^~^");
+            player.sendMessage("§d");
+        }
     }
 }

@@ -7,6 +7,9 @@ import me.nospher.backpack.inventories.listeners.BackpackInventoryClickListener;
 import me.nospher.backpack.listeners.PlayerDamageCloseBackpackListener;
 import me.nospher.backpack.listeners.PlayerInteractAtBackpackListener;
 import me.nospher.backpack.listeners.PlayerJoinBackpackListener;
+import me.nospher.backpack.listeners.customevent.PlayerCloseBackpackListener;
+import me.nospher.backpack.listeners.customevent.PlayerDropBackpackOnDeathListener;
+import me.nospher.backpack.listeners.PlayerOpenBackpackListener;
 import me.nospher.backpack.utils.reflection.Reflection;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -31,6 +34,9 @@ public class StartManager {
             registerListener(new BackpackInventoryClickListener());
             registerListener(new PlayerDamageCloseBackpackListener());
             registerListener(new PlayerJoinBackpackListener());
+            registerListener(new PlayerCloseBackpackListener());
+            registerListener(new PlayerOpenBackpackListener());
+            registerListener(new PlayerDropBackpackOnDeathListener());
         }
 
         protected void registerListener(Listener listener) {
@@ -45,8 +51,8 @@ public class StartManager {
             this.registerCommand("backpack", new BackpackCommand());
         }
 
-        protected void registerCommand(String name, CommandExecutor commandExecutor) {
-            NospherBackpack.getInstance().getCommand(name).setExecutor(commandExecutor);
+        protected void registerCommand(String command, CommandExecutor commandExecutor) {
+            NospherBackpack.getInstance().getCommand(command).setExecutor(commandExecutor);
         }
     }
 }

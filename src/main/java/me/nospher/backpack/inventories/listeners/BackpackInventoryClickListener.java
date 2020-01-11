@@ -30,17 +30,19 @@ public class BackpackInventoryClickListener implements Listener {
     @EventHandler
     public void onClickInBlacklistedItem(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
-        Material item = event.getCurrentItem().getType();
         if(BackpackManager.isBackpackOpen(player)) {
-            if(item == null || item == Material.AIR) return;
-            if (items_blacklist.contains(item.name())) {
+            ItemStack item = event.getCurrentItem();
+            if(item == null || item.getType() == Material.AIR) return;
+            if (items_blacklist.contains(item.getType().name())) {
                 event.setCancelled(true);
                 String invalid_item = NospherBackpack.getInstance().getConfig().getString(
                         "settings." +
                                 "messages." +
                                 "invalid_item");
                 player.sendMessage(Helper.colorize(invalid_item));
+                return;
             }
+            if(NBTTag.getNBTTag(item).hasKey("isBackpack")) event.setCancelled(true);
         }
     }
 

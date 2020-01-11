@@ -1,6 +1,7 @@
 package me.nospher.backpack.inventories.listeners;
 
 import me.nospher.backpack.NospherBackpack;
+import me.nospher.backpack.events.BackpackCloseEvent;
 import me.nospher.backpack.manager.BackpackManager;
 import me.nospher.backpack.utils.Helper;
 import me.nospher.backpack.utils.NBTTag;
@@ -20,30 +21,24 @@ import org.bukkit.inventory.ItemStack;
 public class BackpackInventoryCloseListener implements Listener {
 
     @EventHandler
-    public void onClose(InventoryCloseEvent event) {
-        Player player = (Player) event.getPlayer();
+    public void onClose(BackpackCloseEvent event) {
+        Player player = event.getPlayer();
         Inventory closedInventory = event.getInventory();
         ItemStack item = player.getItemInHand();
-        String inventory_name = NospherBackpack.getInstance().getConfig().getString(
-                "settings." +
-                        "general." +
-                        "inventory_name");
-        if(closedInventory.getName().equalsIgnoreCase(Helper.colorize(inventory_name))) {
 
-            if (item == null || item.getType() == Material.AIR) return;
+        if (item == null || item.getType() == Material.AIR) return;
 
-            NBTTagCompound compound = NBTTag.getNBTTag(item);
-            if (!compound.hasKey("isBackpack")
-                    || !compound.hasKey("inventory")
-                    || !compound.hasKey("rows")
-                    || !compound.hasKey("stacked")) return;
+        NBTTagCompound compound = NBTTag.getNBTTag(item);
+        if (!compound.hasKey("isBackpack")
+                || !compound.hasKey("inventory")
+                || !compound.hasKey("rows")
+                || !compound.hasKey("stacked")) return;
 
-            compound.setString("inventory", InventorySerialize.toJson(closedInventory).toString());
-            ItemStack itemStack = NBTTag.setNBTTag(item, compound);
+        compound.setString("inventory", InventorySerialize.toJson(closedInventory).toString());
+        ItemStack itemStack = NBTTag.setNBTTag(item, compound);
 
-            BackpackManager.setBackpackOpen(player, false);
-            BackpackManager.getPrevention().remove(player);
-            player.setItemInHand(itemStack);
-        }
+        BackpackManager.setBackpackOpen(player, false);
+        BackpackManager.getPrevention().remove(player);
+        player.setItemInHand(itemStack);
     }
 }
