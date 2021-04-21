@@ -10,5 +10,3 @@ faz uma fork e corrige-a pra mim, agradeço <3.
 # Agradecimentos
 - SrGutyerrez (Me forneceu as API's, testou pra mim e corrigiu o sistema de carregar os itens)
 - MrPowerGamerBr (API de ItemSerializer)
-- oGabriel_11 (Ajudou a testar)
-- JesterIruka (Otimização em alguns sistemas)
